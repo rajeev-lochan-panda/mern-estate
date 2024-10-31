@@ -6,7 +6,10 @@ export const signUp = async (req, res, next) => {
 
   // Validate user input
   if (!(username && email && password)) {
-    res.status(400).send("All input is required");
+    res.status(400).send({
+      success: false,
+      message: "All input is required",
+    });
   }
 
   const newUser = new User({ username, email, password: hashedPassword });
@@ -16,7 +19,10 @@ export const signUp = async (req, res, next) => {
   const oldUser = await User.findOne({ email });
 
   if (oldUser) {
-    return res.status(409).send("User Already Exist. Please Login");
+    return res.status(409).send({
+      success: false,
+      message: "User already exist. Please login instead",
+    });
   }
   // Save user in the database
   try {
@@ -26,7 +32,7 @@ export const signUp = async (req, res, next) => {
       message: "User created successfully",
     });
   } catch (err) {
-    next(err);
-    // res.status(500).json({ error: err.message });
+    // next(err);
+    res.status(500).json({ error: err.message });
   }
 };
