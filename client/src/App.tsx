@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Signin from "./pages/Signin";
@@ -8,6 +9,8 @@ import Header from "./components/Header";
 
 function App() {
   return (
+    <>
+    <Toaster richColors position="top-right" duration={3000}/>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -18,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
