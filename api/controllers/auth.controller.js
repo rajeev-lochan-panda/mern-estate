@@ -52,13 +52,19 @@ export const signIn = async (req, res, next) => {
     // Validate if user exist in our database
     const user = await User.findOne({ email });
     if (!user) {
-      return next(errorHandler(404, "User not found"));
+      return res.status(401).send({
+        success: false,
+        message: "User not found, please signup",
+      });
     }
 
     // Validate if user password is correct
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return next(errorHandler(401, "Wrong Credentials"));
+      return res.status(401).send({
+        success: false,
+        message: "Wrong Credentials",
+      })
     }
 
     // Create token
@@ -73,5 +79,7 @@ export const signIn = async (req, res, next) => {
         message: "User logged in successfully",
         data: others,
       });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
