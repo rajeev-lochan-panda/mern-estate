@@ -7,6 +7,7 @@ import { IErrorState, IFormData } from "../types/user";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInFailure, signInSuccess } from "../redux/features/user/userSlice";
 import { RootState } from "../redux/store";
+import OAuth from "../components/OAuth";
 
 function Signin() {
   //#region variables
@@ -133,6 +134,7 @@ function Signin() {
         >
           {loading ? "Loading..." : "Sign in"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Do not have an account?</p>

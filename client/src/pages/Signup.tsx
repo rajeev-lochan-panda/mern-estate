@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { toast } from "sonner";
+import OAuth from "../components/OAuth";
 
 function Signup() {
   //#region variables
@@ -141,6 +142,7 @@ function Signup() {
         >
           {loading ? "Loading..." : "Sign up"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
