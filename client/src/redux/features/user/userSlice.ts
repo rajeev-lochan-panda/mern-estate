@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IErrorState, IFormData } from "../../../types/user";
+import { IErrorState, IUserData, IResponse } from "../../../types/user";
 import { defaultErrorData, defaultFormData } from "../../../constants/user";
 
 interface UserState {
-  currentUser: IFormData;
+  currentUser: IUserData;
   error: IErrorState;
   loading: boolean;
 }
@@ -21,18 +21,15 @@ const userSlice = createSlice({
     signInStart: (state) => {
       state.loading = true;
     },
-    signInSuccess: (state, action: PayloadAction<IFormData>) => {
+    signInSuccess: (state, action: PayloadAction<IResponse>) => {
       state.loading = false;
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.data; // Extracts user data from response
       state.error = defaultErrorData;
     },
     signInFailure: (state, action: PayloadAction<IErrorState>) => {
       state.loading = false;
       state.error = action.payload;
     },
-    // setUser: (state, action: PayloadAction<IFormData>) => {
-    //   state.currentUser = action.payload;
-    // },
   },
 });
 

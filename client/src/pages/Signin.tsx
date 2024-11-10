@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { toast } from "sonner";
-import { IErrorState, IFormData } from "../types/user";
+import { IErrorState, IUserData, IResponse } from "../types/user";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInFailure, signInSuccess } from "../redux/features/user/userSlice";
 import { RootState } from "../redux/store";
@@ -15,7 +15,7 @@ function Signin() {
   const dispatch = useDispatch();
 
   //stores form data state
-  const [formData, setFormData] = useState<IFormData>({
+  const [formData, setFormData] = useState<IUserData>({
     email: "",
     password: "",
   });

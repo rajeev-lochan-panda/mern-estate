@@ -6,21 +6,24 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+import PrivateRoute from "./components/routes/PrivateRoute";
 
 function App() {
   return (
     <>
-    <Toaster richColors position="top-right" duration={3000}/>
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<Signin />} />
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
+      <Toaster richColors position="top-right" duration={3000} />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-in" element={<Signin />} />
+          <Route path="/sign-up" element={<Signup />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

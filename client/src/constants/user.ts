@@ -1,6 +1,6 @@
-import { IErrorState, IFormData } from "../types/user";
+import { IErrorState, IUserData } from "../types/user";
 
-export const defaultFormData: IFormData = {
+export const defaultFormData: IUserData = {
   email: "",
   password: "",
 };
